@@ -1,1 +1,1 @@
-web: python bot/bot.py & gunicorn src.main:app
+web: bash start.sh
