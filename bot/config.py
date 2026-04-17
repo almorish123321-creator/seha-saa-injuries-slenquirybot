@@ -1,6 +1,6 @@
 import os
 
-# قراءة التوكن والآيدي من إعدادات Render
+# قراءة التوكن والآيدي من إعدادات Render فقط
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 ADMIN_USER_ID = int(os.environ.get('ADMIN_USER_ID', 7853478744))
 
