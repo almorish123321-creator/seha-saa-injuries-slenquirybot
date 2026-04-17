@@ -19,3 +19,5 @@ reportlab==4.4.2
 requests==2.31.0
 hijri-converter==2.3.1
 flask-cors==4.0.1
+Flask-SQLAlchemy==3.1.1
+Flask-CORS==4.0.1
