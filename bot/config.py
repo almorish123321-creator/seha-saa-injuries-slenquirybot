@@ -1,7 +1,7 @@
 import os
 
 # قراءة التوكن والآيدي من إعدادات Render
-BOT_TOKEN = os.environ.get('BOT_TOKEN')
+BOT_TOKEN = os.environ.get('8713124620:AAHnV8ksSuCuQvKHimOb7vC1d0ohq-Lg1p8')
 ADMIN_USER_ID = int(os.environ.get('ADMIN_USER_ID', 7853478744))
 
 # API Settings
