@@ -1,0 +1,10 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+src/__pycache__/
+bot/__pycache__/
+src/database/app.db
+/tmp/output/
+.env
+*.log
