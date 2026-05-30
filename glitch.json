@@ -1,0 +1,10 @@
+{
+  "install": "pip3 install -r requirements.txt",
+  "start": "bash start.sh",
+  "watch": {
+    "restart": {
+      "include": ["*.py"],
+      "exclude": ["logs/**"]
+    }
+  }
+}
