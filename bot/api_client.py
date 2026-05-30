@@ -9,7 +9,7 @@ import requests
 import json
 import logging
 from datetime import datetime
-from config import API_FULL_URL
+from config_updated import API_FULL_URL
 
 # إعداد التسجيل
 logger = logging.getLogger(__name__)
