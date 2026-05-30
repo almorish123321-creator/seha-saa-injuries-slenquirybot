@@ -1,6 +1,6 @@
 # Configuration file for Seha Sick Leave Bot - Updated Version
 
-BOT_TOKEN = '8713124620:AAHnV8ksSuCuQvKHimOb7vC1d0ohq-Lg1p8'
+BOT_TOKEN = '8713124620:AAGl9vXWeCdNnG5Q_kNOSe-276TuS4gRTjw'
 ADMIN_USER_ID = '7853478744'
 
 # API Settings
