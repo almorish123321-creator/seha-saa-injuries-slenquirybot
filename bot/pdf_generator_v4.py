@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Enhanced PDF Generator for Seha Sick Leave Reports with Arabic Text Support - Final Version
-وحدة توليد تقارير الإجازة المرضية بصيغة PDF - النسخة النهائية مع التعديلات المطلوبة
+Enhanced PDF Generator for Seha Sick Leave Reports with Arabic Text Support - Updated Version
+وحدة توليد تقارير الإجازة المرضية بصيغة PDF - النسخة المحدثة
 """
 
 import os
@@ -10,7 +10,7 @@ import qrcode
 from datetime import datetime
 from fpdf import FPDF
 from PIL import Image
-from config import *
+from config_updated import *
 import arabic_reshaper
 from bidi.algorithm import get_display
 
@@ -344,6 +344,50 @@ class SickLeavePDF(FPDF):
             # إضافة الباركود
             self.image(qr_path, x=60, y=265, w=42, h=40)
             
+            # النص تحت الباركود
+            self.set_font('NotoSansArabic-Bold', size=10)
+            self.set_text_color(0, 0, 0)
+            # السطر الأول
+            self.set_font('NotoSansArabic-Bold', size=10)
+            self.set_text_color(0, 0, 0)
+            self.set_xy(45, 308)
+            line1_text = self.process_arabic_text('للتحقق من بيانات التقرير يرجى التأكد من زيارة موقع منصة صحة')
+            self.cell(72, 6, line1_text, align='C')
+
+            # السطر الثاني
+            self.set_xy(45, 314)
+            line2_text = self.process_arabic_text('الرسمي')
+            self.cell(72, 6, line2_text, align='C')
+
+            # السطر الثالث
+            if self.times_available:
+                self.set_font('TimesNRMTPro-Bold', size=9)  # تغيير إلى Bold
+            else:
+                self.set_font('Arial', 'B', size=9)  # تغيير إلى Bold
+            self.set_text_color(0, 0, 0)
+            self.set_xy(45, 320)
+            line3_text = 'To check the report please visit Seha\'s offical website'
+            self.cell(72, 6, line3_text, align='C')
+
+            # السطر الرابع (الرابط التشعبي)
+            if self.times_available:
+                self.set_font('TimesNRMTPro-Regular', size=9)
+            else:
+                self.set_font('Arial', '', size=9)
+            self.set_text_color(0, 0, 255)  # لون أزرق للرابط
+            self.set_xy(45, 326)
+            # إنشاء رابط تشعبي حقيقي
+            self.cell(72, 6, QR_URL, align='C', link=QR_URL)
+            
+            # إضافة خط أزرق نحيف تحت الرابط مباشرة
+            self.set_draw_color(0, 0, 255)  # لون أزرق للخط
+            self.set_line_width(0.1)  # خط نحيف جداً
+            # حساب موقع الخط تحت الرابط مباشرة
+            link_start_x = 45 + (72 - self.get_string_width(QR_URL)) / 2
+            link_end_x = link_start_x + self.get_string_width(QR_URL)
+            self.line(link_start_x, 330, link_end_x, 330)  # رفع الخط للأعلى
+            
+            
             # حذف الملف المؤقت
             if os.path.exists(qr_path):
                 os.remove(qr_path)
@@ -371,36 +415,9 @@ class SickLeavePDF(FPDF):
                 self.set_font('TimesNRMTPro-Bold', size=12)
             else:
                 self.set_font('Arial', 'B', size=12)
+            self.set_text_color(0, 0, 0)
             self.set_xy(188, 320)
             self.cell(67, 10, hospital_name_en, align='C')
-            
-            # النصوص التحققية
-            self.set_font('NotoSansArabic-Bold', size=11)
-            self.set_text_color(0, 0, 0)
-            self.set_xy(24, 308)
-            verification_text = self.process_arabic_text('للتحقق من بيانات التقرير يرجى التأكد من زيارة موقع منصة صحة الرسمي')
-            self.cell(112, 10, verification_text, align='C')
-            
-            if self.times_available:
-                self.set_font('TimesNRMTPro-Bold', size=11)
-            else:
-                self.set_font('Arial', 'B', size=11)
-            self.set_xy(24, 318)
-            self.cell(112, 10, 'To Check the report please visit seha\'s official website', align='C')
-            
-            # الرابط
-            if self.times_available:
-                self.set_font('TimesNRMTPro-Bold', size=11)
-            else:
-                self.set_font('Arial', 'B', size=11)
-            self.set_text_color(0, 0, 255)  # #0000ff
-            self.set_xy(48, 330)
-            self.cell(60, 7, QR_URL, align='C', link=QR_URL)
-            
-            # رسم خط تحت الرابط بسماكة أقل
-            self.set_draw_color(0, 0, 255)
-            self.set_line_width(0.2)  # تقليل سماكة الخط
-            self.line(48, 337, 108, 337)
             
             # شعار المركز الوطني للمعلومات الصحية
             if os.path.exists(HEALTH_INFO_CENTER_LOGO):
