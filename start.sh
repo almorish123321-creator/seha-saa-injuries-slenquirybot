@@ -1,5 +1,5 @@
 #!/bin/bash
 mkdir -p /tmp/output
-cd /app 2>/dev/null || true
+pip3 install -r requirements.txt --quiet
 python bot/bot.py &
-gunicorn src.main:app --bind 0.0.0.0:${PORT:-5000} --workers 2
+gunicorn src.main:app --bind 0.0.0.0:${PORT:-3000} --workers 1 --timeout 120
