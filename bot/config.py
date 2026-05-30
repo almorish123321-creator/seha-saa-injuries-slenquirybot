@@ -1,18 +1,17 @@
-import os
+# Configuration file for Seha Sick Leave Bot - Updated Version
 
-# قراءة التوكن والآيدي من إعدادات Render
-BOT_TOKEN = os.environ.get('8713124620:AAHnV8ksSuCuQvKHimOb7vC1d0ohq-Lg1p8')
-ADMIN_USER_ID = int(os.environ.get('ADMIN_USER_ID', 7853478744))
+BOT_TOKEN = '8713124620:AAHnV8ksSuCuQvKHimOb7vC1d0ohq-Lg1p8'
+ADMIN_USER_ID = '7853478744'
 
 # API Settings
-API_BASE_URL = os.environ.get('API_BASE_URL', 'https://www-seha-sa-inquiries-slenquiry.onrender.com')
-API_ENDPOINT = '/api/medical-leaves'
+API_BASE_URL = 'https://80-iayzosfpiazlzday7ujjn-d2b18cd3.manusvm.computer' # يمكن تغييرها حسب عنوان الخادم
+API_ENDPOINT = '/api/add_leave.php'
 API_FULL_URL = API_BASE_URL + API_ENDPOINT
 
-# Paths
-FONTS_DIR = './bot/fonts'
-IMAGES_DIR = './bot'
-OUTPUT_DIR = './bot/output'
+# Paths - Updated for current working directory
+FONTS_DIR = '/home/ubuntu/seha_bot/telegram_bot_deploy/fonts'
+IMAGES_DIR = '/home/ubuntu/seha_bot/telegram_bot_deploy'
+OUTPUT_DIR = "/home/ubuntu/seha_bot/telegram_bot_deploy/output"
 
 # Font paths
 NOTO_SANS_ARABIC_BOLD = f'{FONTS_DIR}/noto_sans_arabic/NotoSansArabic-Bold.ttf'
@@ -33,3 +32,4 @@ QR_URL = 'https://www.seha.sa/#/inquiries/slenquiry'
 # PDF settings
 PDF_WIDTH = 297  # mm
 PDF_HEIGHT = 419  # mm
+
